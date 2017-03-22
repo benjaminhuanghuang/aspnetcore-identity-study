@@ -1,4 +1,5 @@
 ## Add dependencies into .csproj
+$ dotnet add package Microsoft.EntityFrameworkCore
 ```xml
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version= "1.1.1"/>
