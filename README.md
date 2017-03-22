@@ -3,8 +3,8 @@ ASP.NET Core Identity Study Project
 
 Points
 -------------------------------------
-ASP.NET Core  
-
+ * ASP.NET Core  
+ * Identity
 
 
 

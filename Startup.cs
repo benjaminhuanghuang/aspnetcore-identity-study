@@ -7,6 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+using aspnetcore_identity_study.Database;
+using aspnetcore_identity_study.Models;
 
 namespace aspnetcore_identity_study
 {
@@ -27,6 +32,14 @@ namespace aspnetcore_identity_study
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Create connection
+            var conn = @"server=127.0.0.1;Database=AspNetCoreStudy;User Id=sa;Password=Sql@1433";
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn));
+
+            // Add Identity
+            services.AddIdentity<ApplicationUser, IdentityRole>().
+                AddEntityFrameworkStores<AppDbContext>();
+
             // Add framework services.
             services.AddMvc();
         }
@@ -48,7 +61,7 @@ namespace aspnetcore_identity_study
             }
 
             app.UseStaticFiles();
-
+            app.UseIdentity();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
